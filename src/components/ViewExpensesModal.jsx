@@ -37,7 +37,7 @@ const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id
         <Stack direction="horizontal" gap="2" key={expense.id}> 
         <div className="me-auto fs-4">{expense.description}</div>
         <div className="me-auto fs-5">{currencyFormatter.format(expense.amount)}</div>
-    <Button size="sm" variant="outline-danger">&times;</Button>
+    <Button onClick={()=> deleteExpense(expense)} size="sm" variant="outline-danger">&times;</Button>
         </Stack>
     ))}
 </Stack>
