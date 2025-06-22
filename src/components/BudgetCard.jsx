@@ -1,7 +1,8 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap"
 import { currencyFormatter } from "../utils"
 
-const Budget = ({name, amount, max, gray,  onAddExpenseClick}) => {
+const Budget = ({name, amount, max, gray,  onAddExpenseClick,onViewExpensesClick,hideButtons
+}) => {
   const classnames = []
   if(amount > max) {
     classnames.push("bg-danger", "bg-opacity-10")
@@ -13,26 +14,26 @@ const Budget = ({name, amount, max, gray,  onAddExpenseClick}) => {
 >
 <Card.Body>
     <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3" 
-    
     >
       <div className="me-2" >{name}</div>
       <div className="d-flex align-items-baseline">
-        {currencyFormatter.format(amount)} / 
-        <span className="text-muted fs-6 ms-1"> 
-          {currencyFormatter.format(max)}
-        </span>
+        {currencyFormatter.format(amount)} 
+        {max && 
+       ( <span className="text-muted fs-6 ms-1"> 
+         / {currencyFormatter.format(max)}
+        </span>)}
         
       </div>
     </Card.Title>
-    <ProgressBar className="rounded-pill" variant={getProgressBarVariant(amount, max)}
+ { max &&  (<ProgressBar className="rounded-pill" variant={getProgressBarVariant(amount, max)}
     min={0}
     max={max}
-    now={amount}></ProgressBar>
+    now={amount}></ProgressBar>)}
 
-    <Stack direction="horizontal" gap="2" className="mt-4">
+  {!hideButtons &&  (<Stack direction="horizontal" gap="2" className="mt-4">
       <Button variant="outline-primary" className="ms-auto" onClick={ onAddExpenseClick}>Add Expense</Button>
-      <Button variant="outline-secondary" className="btn btn-outline-secondary">View Expenses</Button>
-    </Stack>
+      <Button variant="outline-secondary" className="btn btn-outline-secondary" onClick={onViewExpensesClick}>View Expenses</Button>
+    </Stack>)}
 </Card.Body>
    </Card>
   )

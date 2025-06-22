@@ -12,7 +12,7 @@ export default function AddExpenseModal ({show, handleClose, defaultBudgetId}) {
 function handleSubmit(event) {
     event.preventDefault()
     addExpense({
-        descriptionRef: descriptionRef.current.value,
+        description: descriptionRef.current.value,
         amount: parseFloat(amountRef.current.value),
         budgetId: budgetIdRef.current.value
     })
@@ -63,6 +63,7 @@ handleClose()
     </div>
 </Modal.Body>
 </Form>
-</Modal>  )
+</Modal> 
+ )
 }
 

@@ -44,7 +44,7 @@ setBudgets(prevBudgets => {
     }   
 
 // DELETE BUDGET BY ID
-    function deleteBudget({id}) {
+    function deleteBudget(id) {
         setBudgets(prevBudgets => {
             return prevBudgets.filter(budget => budget.id !== id)
         }
